@@ -1,0 +1,23 @@
+{
+	"name"       : "node-tee",
+	"version"    : "1.0.0",
+	"description": "A Node.js implementation of tee, as specified by POSIX/SUSv3.",
+	"main"       : "index.js",
+	"type"       : "module",
+	"scripts": {
+		"test"  : "node test/tee.test.js",
+		"start" : "node lib/tee.js"
+	},
+	"keywords": [],
+	"author"   : {
+		"name" : "Essam A. El-Sherif",
+		"email": "esm.elsh@gmail.com",
+		"url"  : "https://essamonline.net/resume-it.html"
+	},
+    "homepage" : "https://github.com/essamatefelsherif/node-tee.git",
+	"repository": {
+		"type": "git",
+		"url" : "git+https://github.com/essamatefelsherif/node-tee.git"
+	},
+	"license": "MIT"
+}
