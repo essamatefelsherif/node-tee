@@ -7,11 +7,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const teeJS = join(__dirname, '..', 'lib/tee.js');
 
-// child_process.exec(command[, options][, callback])
-//
-// Spawns a shell then executes the command within that shell, buffering any generated output.
-// The command string passed to the exec function is processed directly by the shell and special characters (vary based on shell) need to be dealt with accordingly.
-
 let cmd_act, cmd_exp;
 let out_act, out_exp;
 let prc_act, prc_exp;
@@ -106,6 +101,11 @@ assert.strictEqual(out_act, out_exp);
 assert.strictEqual(prc_act.exitCode, prc_exp.exitCode);
 
 // helper functions
+
+// child_process.exec(command[, options][, callback])
+//
+// Spawns a shell then executes the command within that shell, buffering any generated output.
+// The command string passed to the exec function is processed directly by the shell and special characters (vary based on shell) need to be dealt with accordingly.
 
 function getOutput(cmd_1, cmd_2){
 
