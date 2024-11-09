@@ -35,7 +35,7 @@ writing to non pipe outputs.
 
 ## Testing
 
-[node-tee](bin/node-tee "node-tee") was tested againts the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each command in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and the exit codes of both child processes. About 30 tests were successfully carried to cover all possible combinations of input conditions and command line arguments.
+[node-tee](bin/node-tee "node-tee") was tested againts the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each of the two commands in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and the exit codes of both child processes. About 30 tests were successfully carried to cover all possible combinations of input conditions and command line arguments.
 
 Anywhere within the package directory tree.
 ```
@@ -49,8 +49,7 @@ node-tee.test
 
 ## Node version support
 
-The latest version of badge-maker supports all currently maintained Node
-versions. See the [Node Release Schedule][].
+**node-tee** supports all currently maintained Node versions. See the [Node Release Schedule][].
 
 [node release schedule]: https://github.com/nodejs/Release#release-schedule
 
