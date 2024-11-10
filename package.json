@@ -1,11 +1,11 @@
 {
 	"name"       : "node-tee",
 	"version"    : "1.0.0",
-	"description": "A Node.js implementation of the (GNU coreutils) 'tee' command version 8.32.",
+	"description": "A Node.js implementation of the (GNU coreutils) 'tee' redirection command version 8.32.",
 	"main"       : "index.js",
 	"type"       : "module",
 	"scripts": {
-		"test"  : "node test/node-tee.test.js",
+		"test"  : "node test/node-tee-test.js",
 		"start" : "node lib/node-tee.js"
 	},
 	"bin": {

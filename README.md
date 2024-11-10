@@ -1,6 +1,6 @@
 # node-tee
 
-A Node.js implementation of the '[tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee")' command developed by ([GNU coreutils](https://www.gnu.org/software/coreutils/ "GNU coreutils")) 8.32.
+A Node.js implementation of the ([GNU coreutils](https://www.gnu.org/software/coreutils/ "GNU coreutils")) '[tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee")' redirection command version 8.32.
 
 ## Installation
 
@@ -37,14 +37,18 @@ writing to non pipe outputs.
 
 [node-tee](bin/node-tee "node-tee") was tested againts the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each of the two commands in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and the exit codes of both child processes. About 30 tests were successfully carried to cover all possible combinations of input conditions and command line arguments.
 
-Anywhere within the package directory tree.
 ```
-npm test
-```
+Usage: node-tee-test [OPTIONS]...
+Test the developed 'node-tee'.
 
-From the node-tree/bin directory.
-```
-node-tee.test
+With no options, testing will be done using nodejs test runner API if supported.
+
+  -n  --node     use nodejs test runner API if supported
+  -d  --def      use default test runner
+  -v  --verbose  make the testing operation more talkative
+  -h  --help     display this help and exit
+
+'node-tee' was tested againts the GNU 'tee' command version 8.32.
 ```
 
 ## Node version support
@@ -52,7 +56,6 @@ node-tee.test
 **node-tee** supports all currently maintained Node versions. See the [Node Release Schedule][].
 
 [node release schedule]: https://github.com/nodejs/Release#release-schedule
-
 
 ## License
 
