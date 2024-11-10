@@ -10,5 +10,5 @@
  * Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
  */
 
-import '../lib/tee.js';
+import '../lib/node-tee.js';
 
