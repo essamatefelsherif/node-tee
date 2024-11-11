@@ -1,15 +1,19 @@
 {
-	"name"       : "@coreutils/node-tee",
+	"name"       : "@essamonline/node-tee",
 	"version"    : "1.0.0",
 	"description": "A Node.js implementation of the (GNU coreutils) 'tee' redirection command version 8.32.",
 	"main"       : "lib/node-tee.js",
 	"type"       : "module",
 	"scripts": {
-		"test"  : "node test/node-tee-test.js",
-		"start" : "node lib/node-tee.js"
+		"test"      : "node test/node-tee-test.js",
+		"testVerb"  : "node test/node-tee-test.js -d -v",
+		"testHelp"  : "node test/node-tee-test.js -h",
+		"start"     : "node lib/node-tee.js",
+		"help"      : "node lib/node-tee.js --help"
 	},
 	"bin": {
-		"node-tee": "bin/node-tee"
+		"node-tee"     : "bin/node-tee",
+		"node-tee-test": "bin/node-tee-test"
 	},
 	"keywords": ["coreutils", "command", "tee", "posix"],
 	"author"   : {

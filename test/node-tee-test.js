@@ -8,24 +8,27 @@
  * Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
  */
 
+// Import nodeJS core modules
 import os                 from 'node:os';
 import assert             from 'node:assert/strict';
 import { exec, execSync } from 'node:child_process';
 import { fileURLToPath }  from 'node:url';
 import { dirname, join }  from 'node:path';
 
-// command line options
+// Define the coreutils command
+const CMD = 'tee';
+const CMD_TEST = 'node-tee-test';
+
+// Command line options
 const cmdOptions = {
 	node    : true,  // -n --node / - d --def
 	verbose : false, // -v --verbose
 };
 
-// test command
-const CMD = 'tee';
-const CMD_TEST = 'node-tee-test';
-
+// Handle command line options
 parseCmdLine();
 
+// Prepare test data
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -34,6 +37,8 @@ const devNull = os.devNull;
 const noOpCmd = 'echo -n';
 
 let cmdShell = CMD;
+let cmdShellVer = cmdShell;
+
 let cmdVer = `\
 tee (GNU coreutils) 8.32
 Copyright (C) 2020 Free Software Foundation, Inc.
@@ -43,8 +48,8 @@ There is NO WARRANTY, to the extent permitted by law.
 
 Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
 `;
-let cmdShellVer = cmdShell;
 
+// Verify existance of the command core utility and test its version
 try{
 	const ver = execSync(`${cmdShell} --version`, {encoding: 'UTF-8'});
 	if(ver !== cmdVer)
@@ -54,7 +59,9 @@ try{
 	cmdShellVer = '';
 }
 
+// Initialize test report parameters
 let testCount = 1;
+let suites = 0;
 let pass   = 0;
 let fail   = 0;
 let cancel = 0
@@ -68,6 +75,7 @@ let cmdData = null;
 
 // TEST SUITE #1 - test common coreutils options
 testSuites.push('test common coreutils options');
+suites++;
 
 // TEST #01 - tee --help
 cmdData = {};
@@ -148,6 +156,7 @@ testData.push(cmdData);
 
 // TEST SUITE #2 - validate command line arguments
 testSuites.push('validate command line arguments');
+suites++;
 
 // TEST #04 - tee --xxx
 cmdData = {};
@@ -227,6 +236,7 @@ testData.push(cmdData);
 
 // TEST SUITE #3 - test normal operation
 testSuites.push('test normal operation');
+suites++;
 
 // TEST #08 - tee
 cmdData = {};
@@ -278,6 +288,7 @@ testData.push(cmdData);
 
 // TEST SUITE #4 - test warn/error conditions of output files
 testSuites.push('test warn/error conditions of output files');
+suites++;
 
 // TEST #11 - tee non-existent/file
 cmdData = {};
@@ -431,6 +442,7 @@ testData.push(cmdData);
 
 // TEST SUITE #5 - test warn/error conditions of broken pipes
 testSuites.push('test warn/error conditions of broken pipes');
+suites++;
 
 // TEST #21 - tee | noOpCmd
 cmdData = {};
@@ -509,6 +521,7 @@ testData.push(cmdData);
 
 // TEST SUITE #6 - test warn/error conditions of output files and broken pipes
 testSuites.push('test warn/error conditions of output files and broken pipes');
+suites++;
 
 // TEST #26 - tee /dev/null non-existent/file /dev/null | noOpCmd
 cmdData = {};
@@ -587,6 +600,7 @@ cmdData.cmd_desc = `${CMD} --output-error=exit-nopipe ${devNull} non-existent/fi
 
 testData.push(cmdData);
 
+// Call the chosen test runner
 if(!cmdOptions.node){
 	defRunner();
 }
@@ -597,12 +611,22 @@ else{
 			nodeRunner(runner);
 		})
 		.catch(() => {
-			defRunner()
+			defRunner();
 		});
 }
 
+/*
+ *     function nodeRunner()
+ * function defRunner()
+ * async function makeTest()
+ * function getCmdOutput()
+ * function parseCmdLine()
+ * function getHelp()
+ * function getError()
+ */
 function nodeRunner(runner){
 
+		// TEST SUITE #1 - test #01 - #03
 		runner.describe(testSuites[0], (t) => {
 			for(let i = 0; i < 3; i++){
 				runner.test(testData[i].cmd_desc, () => {
@@ -611,6 +635,7 @@ function nodeRunner(runner){
 			}
 		});
 
+		// TEST SUITE #2 - test #04 - #07
 		runner.describe(testSuites[1], (t) => {
 			for(let i = 3; i < 7; i++){
 				runner.test(testData[i].cmd_desc, () => {
@@ -619,6 +644,7 @@ function nodeRunner(runner){
 			}
 		});
 
+		// TEST SUITE #3 - test #08 - #10
 		runner.describe(testSuites[2], (t) => {
 			for(let i = 7; i < 10; i++){
 				runner.test(testData[i].cmd_desc, () => {
@@ -627,6 +653,7 @@ function nodeRunner(runner){
 			}
 		});
 
+		// TEST SUITE #4 - test #11 - #20
 		runner.describe(testSuites[3], (t) => {
 			for(let i = 10; i < 20; i++){
 				runner.test(testData[i].cmd_desc, () => {
@@ -635,6 +662,7 @@ function nodeRunner(runner){
 			}
 		});
 
+		// TEST SUITE #5 - test #21 - #25
 		runner.describe(testSuites[4], (t) => {
 			for(let i = 20; i < 25; i++){
 				runner.test(testData[i].cmd_desc, () => {
@@ -643,6 +671,7 @@ function nodeRunner(runner){
 			}
 		});
 
+		// TEST SUITE #6 - test #26 - #30
 		runner.describe(testSuites[5], (t) => {
 			for(let i = 25; i < 30; i++){
 				runner.test(testData[i].cmd_desc, () => {
@@ -652,18 +681,27 @@ function nodeRunner(runner){
 		});
 }
 
+/*
+ * function nodeRunner()
+ *     function defRunner()
+ * async function makeTest()
+ * function getCmdOutput()
+ * function parseCmdLine()
+ * function getHelp()
+ * function getError()
+ */
 function defRunner(){
 
 	cmdOptions.verbose && process.on('exit', () => {
 		console.log();
-		console.log('ℹ tests',       --testCount);
-		console.log('ℹ suites',      1);
-		console.log('ℹ pass',        pass);
-		console.log('ℹ fail',        fail);
-		console.log('ℹ cancelled',   cancel);
-		console.log('ℹ skipped',     skip);
-		console.log('ℹ todo',        todo);
-		console.log('ℹ duration_ms', Math.round(Date.now() - startTime));
+		console.log('▸ tests',       --testCount);
+		console.log('▸ suites',      suites);
+		console.log('▸ pass',        pass);
+		console.log('▸ fail',        fail);
+		console.log('▸ cancelled',   cancel);
+		console.log('▸ skipped',     skip);
+		console.log('▸ todo',        todo);
+		console.log('▸ duration_ms', Math.round(Date.now() - startTime));
 	});
 
 	cmdOptions.verbose && console.error();
@@ -672,6 +710,8 @@ function defRunner(){
 }
 
 /*
+ * function nodeRunner()
+ * function defRunner()
  *     async function makeTest()
  * function getCmdOutput()
  * function parseCmdLine()
@@ -728,6 +768,8 @@ async function makeTest(obj){
 }
 
 /*
+ * function nodeRunner()
+ * function defRunner()
  * async function makeTest()
  *     function getCmdOutput()
  * function parseCmdLine()
@@ -762,6 +804,8 @@ function getCmdOutput(cmd_act, cmd_exp, cmd_inp = ''){
 }
 
 /*
+ * function nodeRunner()
+ * function defRunner()
  * async function makeTest()
  * function getCmdOutput()
  *     function parseCmdLine()
@@ -826,6 +870,8 @@ function parseCmdLine(){
 }
 
 /*
+ * function nodeRunner()
+ * function defRunner()
  * async function makeTest()
  * function getCmdOutput()
  * function parseCmdLine()
@@ -849,6 +895,8 @@ With no options, testing will be done using nodejs test runner API if supported.
 }
 
 /*
+ * function nodeRunner()
+ * function defRunner()
  * async function makeTest()
  * function getCmdOutput()
  * function parseCmdLine()
