@@ -601,20 +601,23 @@ cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existe
 
 testData.push(cmdData);
 
-// Call the chosen test runner
-if(!cmdOptions.node){
-	defRunner();
-}
-else{
-	import('node:test')
-		.then(runner => {
-			cmdOptions.verbose = false;
-			nodeRunner(runner);
-		})
-		.catch(() => {
-			defRunner();
-		});
-}
+// main function
+(() => {
+	// Call the chosen test runner
+	if(!cmdOptions.node){
+		defRunner();
+	}
+	else{
+		import('node:test')
+			.then(runner => {
+				cmdOptions.verbose = false;
+				nodeRunner(runner);
+			})
+			.catch(() => {
+				defRunner();
+			});
+	}
+})('Main Function');
 
 /*
  *     function nodeRunner()
@@ -695,14 +698,14 @@ function defRunner(){
 
 	cmdOptions.verbose && process.on('exit', () => {
 		console.log();
-		console.log('▸ tests',       --testCount);
-		console.log('▸ suites',      suites);
-		console.log('▸ pass',        pass);
-		console.log('▸ fail',        fail);
-		console.log('▸ cancelled',   cancel);
-		console.log('▸ skipped',     skip);
-		console.log('▸ todo',        todo);
-		console.log('▸ duration_ms', Math.round(Date.now() - startTime));
+		console.log('▶ tests',       --testCount);
+		console.log('▶ suites',      suites);
+		console.log('▶ pass',        pass);
+		console.log('▶ fail',        fail);
+		console.log('▶ cancelled',   cancel);
+		console.log('▶ skipped',     skip);
+		console.log('▶ todo',        todo);
+		console.log('▶ duration_ms', Math.round(Date.now() - startTime));
 	});
 
 	cmdOptions.verbose && console.error();
