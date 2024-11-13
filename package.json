@@ -21,7 +21,7 @@
 		"email": "esm.elsh@gmail.com",
 		"url"  : "https://essamonline.net/resume-it.html"
 	},
-	"homepage" : "https://github.com/essamatefelsherif/node-tee.git",
+	"homepage" : "https://github.com/essamatefelsherif/node-tee#readme",
 	"repository": {
 		"type": "git",
 		"url" : "git+https://github.com/essamatefelsherif/node-tee.git"
