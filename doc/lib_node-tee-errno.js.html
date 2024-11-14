@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib/node-tee-errno.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib/node-tee-errno.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * errno(3) — Linux manual page
+ * url: https://man7.org/linux/man-pages/man3/errno.3.html
+ *
+ * @module node-tee-errno
+ * @desc   A list of the symbolic error names that are defined on Linux
+ */
+
+ /** @const {object} default - Symbolic error names and error messages */
+export default {
+	'E2BIG':           'Argument list too long',
+	'EACCES':          'Permission denied',
+	'EADDRINUSE':      'Address already in use',
+	'EADDRNOTAVAIL':   'Address not available',
+	'EAFNOSUPPORT':    'Address family not supported',
+	'EAGAIN':          'Resource temporarily unavailable (may be the same value as EWOULDBLOCK)',
+	'EALREADY':        'Connection already in progress',
+	'EBADF':           'Bad file descriptor',
+	'EBADMSG':         'Bad message',
+	'EBUSY':           'Device or resource busy',
+	'ECANCELED':       'Operation canceled',
+	'ECHILD':          'No child processes',
+	'ECONNABORTED':    'Connection aborted',
+	'ECONNREFUSED':    'Connection refused',
+	'ECONNRESET':      'Connection reset',
+	'EDEADLK':         'Resource deadlock avoided',
+	'EDESTADDRREQ':    'Destination address required',
+	'EDOM':            'Mathematics argument out of domain of function',
+	'EDQUOT':          'Disk quota exceeded',
+	'EEXIST':          'File exists',
+	'EFAULT':          'Bad address',
+	'EFBIG':           'File too large',
+	'EHOSTUNREACH':    'Host is unreachable',
+	'EIDRM':           'Identifier removed',
+	'EILSEQ':          'Invalid or incomplete multibyte or wide character',
+	'EINPROGRESS':     'Operation in progress',
+	'EINTR':           'Interrupted function call',
+	'EINVAL':          'Invalid argument',
+	'EIO':             'Input/output error',
+	'EISCONN':         'Socket is connected',
+	'EISDIR':          'Is a directory',
+	'ELOOP':           'Too many levels of symbolic links',
+	'EMFILE':          'Too many open files',
+	'EMLINK':          'Too many links',
+	'EMSGSIZE':        'Message too long',
+	'EMULTIHOP':       'Multihop attempted',
+	'ENAMETOOLONG':    'Filename too long',
+	'ENETDOWN':        'Network is down',
+	'ENETRESET':       'Connection aborted by network',
+	'ENETUNREACH':     'Network unreachable',
+	'ENFILE':          'Too many open files in system',
+	'ENOBUFS':         'No buffer space available',
+	'ENODATA':         'No message is available on the STREAM head read queue',
+	'ENODEV':          'No such device',
+	'ENOENT':          'No such file or directory',
+	'ENOEXEC':         'Exec format error',
+	'ENOLCK':          'No locks available',
+	'ENOLINK':         'Link has been severed',
+	'ENOMEM':          'Not enough space/cannot allocate memory',
+	'ENOMSG':          'No message of the desired type',
+	'ENOPROTOOPT':     'Protocol not available',
+	'ENOSPC':          'No space left on device',
+	'ENOSR':           'No STREAM resources',
+	'ENOSTR':          'Not a STREAM',
+	'ENOSYS':          'Function not implemented',
+	'ENOTCONN':        'The socket is not connected',
+	'ENOTDIR':         'Not a directory',
+	'ENOTEMPTY':       'Directory not empty',
+	'ENOTRECOVERABLE': 'State not recoverable',
+	'ENOTSOCK':        'Not a socket',
+	'ENOTSUP':         'Operation not supported',
+	'ENOTTY':          'Inappropriate I/O control operation',
+	'ENXIO':           'No such device or address',
+	'EOPNOTSUPP':      'Operation not supported on socket',
+	'EOVERFLOW':       'Value too large to be stored in data type',
+	'EOWNERDEAD':      'Owner died',
+	'EPERM':           'Operation not permitted',
+	'EPIPE':           'Broken pipe',
+	'EPROTO':          'Protocol error',
+	'EPROTONOSUPPORT': 'Protocol not supported',
+	'EPROTOTYPE':      'Protocol wrong type for socket',
+	'ERANGE':          'Result too large (POSIX.1: C99).',
+	'EROFS':           'Read-only filesystem',
+	'ESPIPE':          'Invalid seek',
+	'ESRCH':           'No such process',
+	'ESTALE':          'Stale file handle',
+	'ETIME':           'Timer expired',
+	'ETIMEDOUT':       'Connection timed out',
+	'ETXTBSY':         'Text file busy',
+	'EWOULDBLOCK':     'Operation would block (may be same value as EAGAIN)',
+	'EXDEV':           'Improper link',
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-node-tee.html">node-tee</a></li><li><a href="module-node-tee-errno.html">node-tee-errno</a></li><li><a href="module-node-tee-test.html">node-tee-test</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Nov 14 2024 13:14:36 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

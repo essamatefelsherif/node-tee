@@ -1,7 +1,35 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: test/node-tee-test.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: test/node-tee-test.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * tee (GNU coreutils) 8.32
  * Copyright (C) 2020 Free Software Foundation, Inc.
- * License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+ * License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html>.
  * This is free software: you are free to change and redistribute it.
  * There is NO WARRANTY, to the extent permitted by law.
  *
@@ -117,7 +145,7 @@ function verifyShellCmd(){
 let cmdVer = `\
 tee (GNU coreutils) 8.32
 Copyright (C) 2020 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
@@ -187,7 +215,7 @@ writing to non pipe outputs.
 cmdData.cmd_err = '';
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --help` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --help` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -202,7 +230,7 @@ cmdData.cmd_out = `v1.0.0\n`;
 cmdData.cmd_err = '';
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --version` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --version` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -210,14 +238,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --`;
 cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = '';
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -229,7 +257,7 @@ suitesCount++;
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --xxx`;
-cmdData.cmd_exp = cmdShellVer && `${cmdShell} --xxx`;
+cmdData.cmd_exp = cmdShellVer &amp;&amp; `${cmdShell} --xxx`;
 cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
@@ -237,7 +265,7 @@ cmdData.cmd_err = `tee: unrecognized option '--xxx'
 Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --xxx` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --xxx` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -245,7 +273,7 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=`;
-cmdData.cmd_exp = cmdShellVer && `${cmdShell} --output-error=`;
+cmdData.cmd_exp = cmdShellVer &amp;&amp; `${cmdShell} --output-error=`;
 cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
@@ -259,7 +287,7 @@ Valid arguments are:
 Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -267,7 +295,7 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=xxx`;
-cmdData.cmd_exp = cmdShellVer && `${cmdShell} --output-error=xxx`;
+cmdData.cmd_exp = cmdShellVer &amp;&amp; `${cmdShell} --output-error=xxx`;
 cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
@@ -281,7 +309,7 @@ Valid arguments are:
 Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=xxx` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=xxx` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -289,7 +317,7 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} -x`;
-cmdData.cmd_exp = cmdShellVer && `${cmdShell} -x`;
+cmdData.cmd_exp = cmdShellVer &amp;&amp; `${cmdShell} -x`;
 cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
@@ -297,7 +325,7 @@ cmdData.cmd_err = `tee: invalid option -- 'x'
 Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} -x` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} -x` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -309,14 +337,14 @@ suitesCount++;
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell}`;
 cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = '';
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -324,14 +352,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell}`;
 cmdData.cmd_inp = '\x00\x01\x02\x03\x04';
 
 cmdData.cmd_out = `\x00\x01\x02\x03\x04`;
 cmdData.cmd_err = '';
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE}` + ` << \\x00\\x01\\x02\\x03\\x04`;
+cmdData.cmd_desc = `${CMD_NODE}` + ` &lt;&lt; \\x00\\x01\\x02\\x03\\x04`;
 
 testData.push(cmdData);
 
@@ -339,7 +367,7 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell}`;
 cmdData.cmd_inp = 'test data\nline 1\nline 2\x04\nline 3';
 
 cmdData.cmd_out = `test data
@@ -349,7 +377,7 @@ line 3`;
 cmdData.cmd_err = '';
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE}` + ` << test data\\nline 1\\nline 2\\x04\\nline 3`;
+cmdData.cmd_desc = `${CMD_NODE}` + ` &lt;&lt; test data\\nline 1\\nline 2\\x04\\nline 3`;
 
 testData.push(cmdData);
 
@@ -361,14 +389,14 @@ suitesCount++;
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} non-existent/file`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} non-existent/file`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} non-existent/file`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = `test data`;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} non-existent/file` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -376,14 +404,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn non-existent/file`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn non-existent/file`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn non-existent/file`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = `test data`;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn non-existent/file` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -391,14 +419,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn-nopipe non-existent/file`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn-nopipe non-existent/file`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn-nopipe non-existent/file`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = `test data`;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe non-existent/file` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -406,14 +434,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit non-existent/file`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit non-existent/file`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit non-existent/file`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit non-existent/file` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -421,14 +449,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit-nopipe non-existent/file`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit-nopipe non-existent/file`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit-nopipe non-existent/file`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe non-existent/file` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -436,14 +464,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} ${devNull} non-existent/file ${devNull}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} ${devNull} non-existent/file ${devNull}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} ${devNull} non-existent/file ${devNull}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = `test data`;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -451,14 +479,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn ${devNull} non-existent/file ${devNull}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn ${devNull} non-existent/file ${devNull}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn ${devNull} non-existent/file ${devNull}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = `test data`;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -466,14 +494,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = `test data`;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -481,14 +509,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit ${devNull} non-existent/file ${devNull}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit ${devNull} non-existent/file ${devNull}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit ${devNull} non-existent/file ${devNull}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -496,14 +524,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 1;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -515,14 +543,14 @@ suitesCount++;
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = ``;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -530,14 +558,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `tee: 'standard output': Broken pipe\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -545,14 +573,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn-nopipe | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn-nopipe | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn-nopipe | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = ``;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -560,14 +588,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: 'standard output': Broken pipe\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -575,14 +603,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit-nopipe | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit-nopipe | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit-nopipe | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = ``;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -594,14 +622,14 @@ suitesCount++;
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -609,7 +637,7 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = '';
@@ -618,7 +646,7 @@ tee: non-existent/file: No such file or directory
 tee: 'standard output': Broken pipe\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -626,14 +654,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -641,14 +669,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 
@@ -656,14 +684,14 @@ testData.push(cmdData);
 cmdData = {};
 
 cmdData.cmd_act = `node ${cmdNode} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
-cmdData.cmd_exp = cmdShell && `${cmdShell} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
+cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}`;
 cmdData.cmd_inp = 'test data';
 
 cmdData.cmd_out = ``;
 cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
 
 cmdData.cmd_ext = 0;
-cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp && ` << ${cmdData.cmd_inp}`);
+cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
 testData.push(cmdData);
 }
@@ -688,7 +716,7 @@ function nodeRunner(runner){
 
 	// TEST SUITE #1 - test #01 - #03
 	runner.suite(testSuites[0], {skip: false}, () => {
-		for(let i = 0; i < 3; i++){
+		for(let i = 0; i &lt; 3; i++){
 			runner.test(testData[i].cmd_desc,  async () => {
 				await makeTest(testData[i]);
 			});
@@ -697,7 +725,7 @@ function nodeRunner(runner){
 
 	// TEST SUITE #2 - test #04 - #07
 	runner.suite(testSuites[1], {skip: false}, () => {
-		for(let i = 3; i < 7; i++){
+		for(let i = 3; i &lt; 7; i++){
 			runner.test(testData[i].cmd_desc, async () => {
 				await makeTest(testData[i]);
 			});
@@ -706,7 +734,7 @@ function nodeRunner(runner){
 
 	// TEST SUITE #3 - test #08 - #10
 	runner.suite(testSuites[2], {skip: false}, () => {
-		for(let i = 7; i < 10; i++){
+		for(let i = 7; i &lt; 10; i++){
 			runner.test(testData[i].cmd_desc, async () => {
 				await makeTest(testData[i]);
 			});
@@ -715,7 +743,7 @@ function nodeRunner(runner){
 
 	// TEST SUITE #4 - test #11 - #20
 	runner.suite(testSuites[3], {skip: false}, () => {
-		for(let i = 10; i < 20; i++){
+		for(let i = 10; i &lt; 20; i++){
 			runner.test(testData[i].cmd_desc, async () => {
 				await makeTest(testData[i]);
 			});
@@ -724,7 +752,7 @@ function nodeRunner(runner){
 
 	// TEST SUITE #5 - test #21 - #25
 	runner.suite(testSuites[4], {skip: false}, () => {
-		for(let i = 20; i < 25; i++){
+		for(let i = 20; i &lt; 25; i++){
 			runner.test(testData[i].cmd_desc, async () => {
 				await makeTest(testData[i]);
 			});
@@ -733,7 +761,7 @@ function nodeRunner(runner){
 
 	// TEST SUITE #6 - test #26 - #30
 	runner.suite(testSuites[5], {skip: false}, () => {
-		for(let i = 25; i < 30; i++){
+		for(let i = 25; i &lt; 30; i++){
 			runner.test(testData[i].cmd_desc, async () => {
 				await makeTest(testData[i]);
 			});
@@ -758,7 +786,7 @@ function nodeRunner(runner){
  */
 function defRunner(){
 
-	cmdOptions.verbose && process.on('exit', () => {
+	cmdOptions.verbose &amp;&amp; process.on('exit', () => {
 		console.log();
 		console.log('▶ tests',       --testCount);
 		console.log('▶ suites',      suitesCount);
@@ -770,9 +798,9 @@ function defRunner(){
 		console.log('▶ duration_ms', Math.round(Date.now() - startTime));
 	});
 
-	cmdOptions.verbose && console.error();
+	cmdOptions.verbose &amp;&amp; console.error();
 	testData.forEach(obj => makeTest(obj));
-	cmdOptions.verbose && console.log();
+	cmdOptions.verbose &amp;&amp; console.log();
 }
 
 /**
@@ -807,7 +835,7 @@ async function makeTest(obj){
 	let postMsg = preMsg;
 
 	preMsg += `Initiate ... ${testDesc}`;
-	cmdOptions.verbose && console.error(preMsg);
+	cmdOptions.verbose &amp;&amp; console.error(preMsg);
 
 	[out_act, out_exp, prc_act, prc_exp] = await getCmdOutput(obj.cmd_act, obj.cmd_exp, obj.cmd_inp);
 
@@ -831,13 +859,13 @@ async function makeTest(obj){
 		passCount++;
 
 		postMsg += `Success ... ${testDesc}`;
-		cmdOptions.verbose && console.error(postMsg);
+		cmdOptions.verbose &amp;&amp; console.error(postMsg);
 	}
 	catch(e){
 		failCount++;
 
 		postMsg += `Failure ... ${testDesc}`;
-		cmdOptions.verbose && console.error(postMsg);
+		cmdOptions.verbose &amp;&amp; console.error(postMsg);
 	}
 }
 
@@ -904,7 +932,7 @@ function getCmdOutput(cmd_act, cmd_exp, cmd_inp = ''){
  */
 function parseCmdLine(){
 
-	for(let i = 2; i < process.argv.length; i++){
+	for(let i = 2; i &lt; process.argv.length; i++){
 		let opt = process.argv[i];
 
 		if(opt.startsWith('--')){
@@ -1031,3 +1059,26 @@ Try '${CMD_NODE_TEST} --help' for more information.`,
 
 	return error[n];
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-node-tee.html">node-tee</a></li><li><a href="module-node-tee-errno.html">node-tee-errno</a></li><li><a href="module-node-tee-test.html">node-tee-test</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Nov 14 2024 13:14:36 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
