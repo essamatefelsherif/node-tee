@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tee invocation (GNU Coreutils 9.5)</title>
+
+	<meta name="description" content="tee invocation (GNU Coreutils 9.5)">
+	<meta name="keywords" content="tee invocation (GNU Coreutils 9.5)">
+	<meta name="resource-type" content="document">
+	<meta name="distribution" content="global">
+	<meta name="Generator" content="makeinfo">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link href="https://www.gnu.org/software/coreutils/manual/html_node/index.html" rel="start" title="Top">
+	<link href="https://www.gnu.org/software/coreutils/manual/html_node/Concept-index.html" rel="index" title="Concept index">
+	<link href="https://www.gnu.org/software/coreutils/manual/html_node/index.html#SEC_Contents" rel="contents" title="Table of Contents">
+	<link href="https://www.gnu.org/software/coreutils/manual/html_node/Redirection.html" rel="up" title="Redirection">
+	<link rel="stylesheet" type="text/css" href="./css/manual.css">
+</head>
+<body lang="en">
+<div class="section-level-extent" id="tee-invocation">
+<hr>
+<h3 class="section" id="tee_003a-Redirect-output-to-multiple-files-or-processes"><code class="command">tee</code>: Redirect output to multiple files or processes</h3>
+
+<a class="index-entry-id" id="index-tee"></a>
+<a class="index-entry-id" id="index-pipe-fitting"></a>
+<a class="index-entry-id" id="index-destinations_002c-multiple-output"></a>
+<a class="index-entry-id" id="index-read-from-standard-input-and-write-to-standard-output-and-files"></a>
+
+<p>The <code class="command">tee</code> command copies standard input to standard output and also
+to any files given as arguments.  This is useful when you want not only
+to send some data down a pipe, but also to save a copy.  Synopsis:
+</p>
+<div class="example">
+<pre class="example-preformatted">tee [<var class="var">option</var>]… [<var class="var">file</var>]…
+</pre></div>
+
+<p>If a file being written to does not already exist, it is created.  If a
+file being written to already exists, the data it previously contained
+is overwritten unless the <samp class="option">-a</samp> option is used.
+</p>
+<p>In previous versions of GNU Coreutils (5.3.0–8.23),
+a <var class="var">file</var> of ‘<samp class="samp">-</samp>’
+caused <code class="command">tee</code> to send another copy of input to standard output.
+However, as the interleaved output was not very useful, <code class="command">tee</code> now
+conforms to POSIX and treats ‘<samp class="samp">-</samp>’ as a file name.
+</p>
+<p>The program accepts the following options.  Also see <a class="ref" href="https://www.gnu.org/software/coreutils/manual/html_node/Common-options.html" target="_blank" ">Common options</a>.
+</p>
+<dl class="table">
+<dt id="index-_002da-12"><span>‘<samp class="samp">-a</samp>’<a class="copiable-link" href="#index-_002da-12"> ¶</a></span></dt>
+<dt>‘<samp class="samp">--append</samp>’</dt>
+<dd><a class="index-entry-id" id="index-_002d_002dappend"></a>
+<p>Append standard input to the given files rather than overwriting
+them.
+</p>
+</dd>
+<dt id="index-_002di-16"><span>‘<samp class="samp">-i</samp>’<a class="copiable-link" href="#index-_002di-16"> ¶</a></span></dt>
+<dt>‘<samp class="samp">--ignore-interrupts</samp>’</dt>
+<dd><a class="index-entry-id" id="index-_002d_002dignore_002dinterrupts"></a>
+<p>Ignore interrupt signals.
+</p>
+</dd>
+<dt id="index-_002dp-8"><span>‘<samp class="samp">-p</samp>’<a class="copiable-link" href="#index-_002dp-8"> ¶</a></span></dt>
+<dt>‘<samp class="samp">--output-error[=<var class="var">mode</var>]</samp>’</dt>
+<dd><a class="index-entry-id" id="index-_002d_002doutput_002derror"></a>
+<p>Adjust the behavior with errors on the outputs.
+In summary <samp class="option">-p</samp> allows <code class="command">tee</code> to operate in a more
+appropriate manner with pipes, and to continue to process data
+to any remaining outputs, if any pipe outputs exit early.
+The default operation when <samp class="option">--output-error</samp> is <em class="emph">not</em>
+specified is to exit immediately on error writing to a pipe,
+and diagnose errors writing to a non-pipe.
+The long form <samp class="option">--output-error</samp> option supports selection
+between the following <var class="var">mode</var>s:
+</p>
+<dl class="table">
+<dt>‘<samp class="samp">warn</samp>’</dt>
+<dd><p>Warn on error opening or writing any output, including pipes.
+Writing is continued to still open files/pipes.
+Exit status indicates failure if any output has an error.
+</p>
+</dd>
+<dt>‘<samp class="samp">warn-nopipe</samp>’</dt>
+<dd><p>This is the default <var class="var">mode</var> when not specified,
+or when the short form <samp class="option">-p</samp> is used.
+Warn on error opening or writing any output, except pipes.
+Writing is continued to still open files/pipes.
+Exit immediately if all remaining outputs become broken pipes.
+Exit status indicates failure if any non pipe output had an error.
+</p>
+</dd>
+<dt>‘<samp class="samp">exit</samp>’</dt>
+<dd><p>Exit on error opening or writing any output, including pipes.
+</p>
+</dd>
+<dt>‘<samp class="samp">exit-nopipe</samp>’</dt>
+<dd><p>Exit on error opening or writing any output, except pipes.
+Exit immediately if all remaining outputs become broken pipes.
+</p></dd>
+</dl>
+
+</dd>
+</dl>
+
+<p>The <code class="command">tee</code> command is useful when you happen to be transferring a large
+amount of data and also want to summarize that data without reading
+it a second time.  For example, when you are downloading a DVD image,
+you often want to verify its signature or checksum right away.
+The inefficient way to do it is simply:
+</p>
+<div class="example">
+<pre class="example-preformatted">wget https://example.com/some.iso &amp;&amp; sha1sum some.iso
+</pre></div>
+
+<p>One problem with the above is that it makes you wait for the
+download to complete before starting the time-consuming SHA1 computation.
+Perhaps even more importantly, the above requires reading
+the DVD image a second time (the first was from the network).
+</p>
+<p>The efficient way to do it is to interleave the download
+and SHA1 computation.  Then, you’ll get the checksum for
+free, because the entire process parallelizes so well:
+</p>
+<div class="example">
+<pre class="example-preformatted"># slightly contrived, to demonstrate process substitution
+wget -O - https://example.com/dvd.iso \
+  | tee &gt;(sha1sum &gt; dvd.sha1) &gt; dvd.iso
+</pre></div>
+
+<p>That makes <code class="command">tee</code> write not just to the expected output file,
+but also to a pipe running <code class="command">sha1sum</code> and saving the final
+checksum in a file named <samp class="file">dvd.sha1</samp>.
+</p>
+<p>However, this example relies on a feature of modern shells
+called <em class="dfn">process substitution</em>
+(the ‘<samp class="samp">&gt;(command)</samp>’ syntax, above;
+See <a data-manual="bash" href="https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html#Process-Substitution" target="_blank">Process Substitution</a> in <cite class="cite">The Bash Reference Manual</cite>.),
+so it works with <code class="command">zsh</code>, <code class="command">bash</code>, and <code class="command">ksh</code>,
+but not with <code class="command">/bin/sh</code>.  So if you write code like this
+in a shell script, start the script with ‘<samp class="samp">#!/bin/bash</samp>’.
+</p>
+<p>If any of the process substitutions (or piped standard output)
+might exit early without consuming all the data, the <samp class="option">-p</samp> option
+is needed to allow <code class="command">tee</code> to continue to process the input
+to any remaining outputs.
+</p>
+<p>Since the above example writes to one file and one process,
+a more conventional and portable use of <code class="command">tee</code> is even better:
+</p>
+<div class="example">
+<pre class="example-preformatted">wget -O - https://example.com/dvd.iso \
+  | tee dvd.iso | sha1sum &gt; dvd.sha1
+</pre></div>
+
+<p>You can extend this example to make <code class="command">tee</code> write to two processes,
+computing MD5 and SHA1 checksums in parallel.  In this case,
+process substitution is required:
+</p>
+<div class="example">
+<pre class="example-preformatted">wget -O - https://example.com/dvd.iso \
+  | tee &gt;(sha1sum &gt; dvd.sha1) \
+        &gt;(md5sum &gt; dvd.md5) \
+  &gt; dvd.iso
+</pre></div>
+
+<p>This technique is also useful when you want to make a <em class="emph">compressed</em>
+copy of the contents of a pipe.
+Consider a tool to graphically summarize file system usage data from
+‘<samp class="samp">du -ak</samp>’.
+For a large hierarchy, ‘<samp class="samp">du -ak</samp>’ can run for a long time,
+and can easily produce terabytes of data, so you won’t want to
+rerun the command unnecessarily.  Nor will you want to save
+the uncompressed output.
+</p>
+<p>Doing it the inefficient way, you can’t even start the GUI
+until after you’ve compressed all of the <code class="command">du</code> output:
+</p>
+<div class="example">
+<pre class="example-preformatted">du -ak | gzip -9 &gt; /tmp/du.gz
+gzip -d /tmp/du.gz | checkspace -a
+</pre></div>
+
+<p>With <code class="command">tee</code> and process substitution, you start the GUI
+right away and eliminate the decompression completely:
+</p>
+<div class="example">
+<pre class="example-preformatted">du -ak | tee &gt;(gzip -9 &gt; /tmp/du.gz) | checkspace -a
+</pre></div>
+
+<p>Finally, if you regularly create more than one type of
+compressed tarball at once, for example when <code class="code">make dist</code> creates
+both <code class="command">gzip</code>-compressed and <code class="command">bzip2</code>-compressed tarballs,
+there may be a better way.
+Typical <code class="command">automake</code>-generated <samp class="file">Makefile</samp> rules create
+the two compressed tar archives with commands in sequence, like this
+(slightly simplified):
+</p>
+<div class="example">
+<pre class="example-preformatted">tardir=your-pkg-M.N
+tar chof - "$tardir" | gzip  -9 -c &gt; your-pkg-M.N.tar.gz
+tar chof - "$tardir" | bzip2 -9 -c &gt; your-pkg-M.N.tar.bz2
+</pre></div>
+
+<p>However, if the hierarchy you are archiving and compressing is larger
+than a couple megabytes, and especially if you are using a multi-processor
+system with plenty of memory, then you can do much better by reading the
+directory contents only once and running the compression programs in parallel:
+</p>
+<div class="example">
+<pre class="example-preformatted">tardir=your-pkg-M.N
+tar chof - "$tardir" \
+  | tee &gt;(gzip -9 -c &gt; your-pkg-M.N.tar.gz) \
+  | bzip2 -9 -c &gt; your-pkg-M.N.tar.bz2
+</pre></div>
+
+<p>If you want to further process the output from process substitutions,
+and those processes write atomically (i.e., write less than the system’s
+PIPE_BUF size at a time), that’s possible with a construct like:
+</p>
+<div class="example">
+<pre class="example-preformatted">tardir=your-pkg-M.N
+tar chof - "$tardir" \
+  | tee &gt;(md5sum --tag) &gt; &gt;(sha256sum --tag) \
+  | sort | gpg --clearsign &gt; your-pkg-M.N.tar.sig
+</pre></div>
+
+<p>An exit status of zero indicates success,
+and a nonzero value indicates failure.
+</p>
+
+</div>
+<hr>
+</body>
+</html>
