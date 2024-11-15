@@ -35,7 +35,7 @@ writing to non pipe outputs.
 
 ## Testing
 
-[node-tee](bin/node-tee "node-tee") was tested againts the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each of the two commands in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and the exit codes of both child processes. 30 tests were successfully carried under 'x86_64-mageia-linux-gnu' to cover all possible combinations of inputs and command line arguments.
+[node-tee](bin/node-tee "node-tee") was tested to verify full emulation of the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each of the two commands [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") and [node-tee](bin/node-tee "node-tee") in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and exit codes. 30 tests were successfully carried on 'linux' and 'win32' platforms, to cover all possible combinations of inputs and command line arguments.
 ```
 Usage: node-tee-test [OPTIONS]...
 Test the developed 'node-tee'.

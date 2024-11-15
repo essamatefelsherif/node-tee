@@ -40,7 +40,7 @@ let   cmdShell = CMD_SHELL;
 let   cmdShellVer = cmdShell;
 
 const devNull = os.devNull;
-const noOpCmd = 'echo -n';
+const noOpCmd = 'exit';
 
 // Initialize test parameters
 let testCount   = 1;
