@@ -7,7 +7,7 @@
  *
  * Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
  *
- * Implemented in nodeJS by Essam A. El-Sherif.
+ * Implemented in node.js by Essam A. El-Sherif.
  *
  * @module  node-tee-test
  * @desc    Testing module for 'node-tee' core utility.

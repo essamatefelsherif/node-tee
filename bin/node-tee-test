@@ -8,6 +8,8 @@
  * There is NO WARRANTY, to the extent permitted by law.
  *
  * Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
+ *
+ * Implemented in node.js by Essam A. El-Sherif.
  */
 
 import '../test/node-tee-test.js';
