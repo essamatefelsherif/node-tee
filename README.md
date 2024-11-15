@@ -50,6 +50,10 @@ With no options, testing will be done using nodejs test runner API if supported.
 'node-tee' was tested againts the GNU 'tee' command version 8.32.
 ```
 
+## API Docs
+
+To use this module as a library, see the [API Documentation](https://essamatefelsherif.github.io/node-tee/ "API Documentation").
+
 ## Node version support
 
 **node-tee** supports all currently maintained Node versions. See the [Node Release Schedule][].
