@@ -62,4 +62,4 @@ To use this module as a library, see the [API Documentation](https://essamatefel
 
 ## License
 
-This software is licensed under the MIT license, see the LICENSE file.
+This software is licensed under the MIT license, see the [LICENSE](./LICENSE "LICENSE") file.

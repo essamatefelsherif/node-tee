@@ -20,5 +20,5 @@ node_modules/
 .env.production.local
 .env.local
 
-# other
+# other folders
 tmp/

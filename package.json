@@ -15,7 +15,7 @@
 		"node-tee"     : "bin/node-tee",
 		"node-tee-test": "bin/node-tee-test"
 	},
-	"keywords": ["coreutils", "command", "tee", "posix"],
+	"keywords" : ["coreutils", "command", "tee", "posix"],
 	"author"   : {
 		"name" : "Essam A. El-Sherif",
 		"email": "esm.elsh@gmail.com",
