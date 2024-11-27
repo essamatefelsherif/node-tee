@@ -4,6 +4,7 @@
 ![NPM Downloads](https://img.shields.io/npm/d18m/%40essamonline%2Fnode-tee?logo=npm&color=lightgreen)
 ![NPM Last Update](https://img.shields.io/npm/last-update/%40essamonline%2Fnode-tee?logo=npm&color=blue)
 ![NPM Version](https://img.shields.io/npm/v/%40essamonline%2Fnode-tee?logo=npm)
+[![Coverage Status](https://coveralls.io/repos/github/essamatefelsherif/node-tee/badge.svg?branch=main)](https://coveralls.io/github/essamatefelsherif/node-tee?branch=main)
 
 A Node.js implementation of the ([GNU coreutils](https://www.gnu.org/software/coreutils/ "GNU coreutils")) '[tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee")' redirection command version 8.32.
 
