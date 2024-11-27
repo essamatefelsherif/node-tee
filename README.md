@@ -1,5 +1,10 @@
 # node-tee
 
+![Static Badge](https://img.shields.io/badge/GNU%20coreutils-node--tee-blue?logo=GNU&logoColor=FFFFFF)
+![NPM Downloads](https://img.shields.io/npm/d18m/%40essamonline%2Fnode-tee?logo=npm&color=lightgreen)
+![NPM Last Update](https://img.shields.io/npm/last-update/%40essamonline%2Fnode-tee?logo=npm&color=blue)
+![NPM Version](https://img.shields.io/npm/v/%40essamonline%2Fnode-tee?logo=npm)
+
 A Node.js implementation of the ([GNU coreutils](https://www.gnu.org/software/coreutils/ "GNU coreutils")) '[tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee")' redirection command version 8.32.
 
 ## Installation
