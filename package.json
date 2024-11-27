@@ -5,17 +5,17 @@
 	"main": "lib/node-tee.js",
 	"type": "module",
 	"scripts": {
-		"start"       : "node lib/node-tee.js",
-		"help"        : "node lib/node-tee.js --help",
-		"test"        : "node --test",
-		"testCover"   : "node --test --experimental-test-coverage",
-		"testReport"  : "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=docs/coverage/node/lcov.info",
-		"testVerbose" : "node test/node-tee.test.js -d -v",
-		"testSilent"  : "node test/node-tee.test.js -d",
-		"testHelp"    : "node test/node-tee.test.js -h",
-		"devGenhtml"  : "genhtml -o docs/coverage/node/genhtml --config-file .lcovrc docs/coverage/node/*.info",
-		"devDoc"      : "rm -fr docs/jsdoc/* && jsdoc lib/*.js test/*.js -d docs/jsdoc",
-		"devUpdate"   : "npm run testReport && npm run devGenhtml && npm run devDoc"
+		"start": "node lib/node-tee.js",
+		"help": "node lib/node-tee.js --help",
+		"test": "node --test",
+		"testCover": "node --test --experimental-test-coverage",
+		"testReport": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=docs/coverage/node/lcov.info",
+		"testVerbose": "node test/node-tee.test.js -d -v",
+		"testSilent": "node test/node-tee.test.js -d",
+		"testHelp": "node test/node-tee.test.js -h",
+		"devGenhtml": "genhtml -o docs/coverage/node/genhtml --config-file .lcovrc docs/coverage/node/*.info",
+		"devDoc": "rm -fr docs/jsdoc/* && jsdoc lib/*.js test/*.js -d docs/jsdoc",
+		"devUpdate": "npm run testReport && npm run devGenhtml && npm run devDoc"
 	},
 	"bin": {
 		"node-tee": "bin/node-tee",
@@ -39,6 +39,7 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"coveralls-next": "^4.2.1",
 		"jsdoc": "^4.0.4"
 	}
 }
