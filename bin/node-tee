@@ -13,4 +13,3 @@
  */
 
 import '../lib/node-tee.js';
-

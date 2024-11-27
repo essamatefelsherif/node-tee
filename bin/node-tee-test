@@ -12,5 +12,4 @@
  * Implemented in node.js by Essam A. El-Sherif.
  */
 
-import '../test/node-tee-test.js';
-
+import '../test/node-tee.test.js';

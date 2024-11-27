@@ -1,30 +1,41 @@
 {
-	"name"       : "@essamonline/node-tee",
-	"version"    : "1.0.0",
+	"name": "@essamonline/node-tee",
+	"version": "1.0.0",
 	"description": "A Node.js implementation of the (GNU coreutils) 'tee' redirection command version 8.32.",
-	"main"       : "lib/node-tee.js",
-	"type"       : "module",
+	"main": "lib/node-tee.js",
+	"type": "module",
 	"scripts": {
-		"test"      : "node test/node-tee-test.js",
-		"testVerb"  : "node test/node-tee-test.js -d -v",
-		"testHelp"  : "node test/node-tee-test.js -h",
-		"start"     : "node lib/node-tee.js",
-		"help"      : "node lib/node-tee.js --help"
+		"test"        : "node --test",
+		"testCover"   : "node --test --experimental-test-coverage",
+		"testReport"  : "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=docs/coverage/node/lcov.info",
+		"testVerbose" : "node test/node-tee.test.js -d -v",
+		"testSilent"  : "node test/node-tee.test.js -d",
+		"testHelp"    : "node test/node-tee.test.js -h",
+		"start"       : "node lib/node-tee.js",
+		"help"        : "node lib/node-tee.js --help"
 	},
 	"bin": {
-		"node-tee"     : "bin/node-tee",
+		"node-tee": "bin/node-tee",
 		"node-tee-test": "bin/node-tee-test"
 	},
-	"keywords" : ["coreutils", "command", "tee", "posix"],
-	"author"   : {
-		"name" : "Essam A. El-Sherif",
+	"keywords": [
+		"coreutils",
+		"command",
+		"tee",
+		"posix"
+	],
+	"author": {
+		"name": "Essam A. El-Sherif",
 		"email": "esm.elsh@gmail.com",
-		"url"  : "https://essamonline.net/resume-it.html"
+		"url": "https://essamonline.net/resume-it.html"
 	},
-	"homepage" : "https://github.com/essamatefelsherif/node-tee#readme",
+	"homepage": "https://github.com/essamatefelsherif/node-tee#readme",
 	"repository": {
 		"type": "git",
-		"url" : "git+https://github.com/essamatefelsherif/node-tee.git"
+		"url": "git+https://github.com/essamatefelsherif/node-tee.git"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"jsdoc": "^4.0.4"
+	}
 }
