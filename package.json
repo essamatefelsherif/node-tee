@@ -16,7 +16,7 @@
 		"devGenhtml": "genhtml -o docs/coverage/node/genhtml --config-file .lcovrc docs/coverage/node/*.info",
 		"devDoc": "rm -fr docs/jsdoc/* && jsdoc lib/*.js test/*.js -d docs/jsdoc",
 		"devUpdate": "npm run testReport && npm run devGenhtml && npm run devDoc",
-		"devCoveralls": "COVERALLS_REPO_TOKEN=9FUY3DOuwfNNQv1nA59mdTFAzheYEFlB8 cat docs/coverage/node/lcov.info | coveralls"
+		"devCoveralls": "coveralls < docs/coverage/node/lcov.info"
 	},
 	"bin": {
 		"node-tee": "bin/node-tee",
