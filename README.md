@@ -41,7 +41,13 @@ writing to non pipe outputs.
 
 ## Testing
 
-[node-tee](bin/node-tee "node-tee") was tested to verify full emulation of the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each of the two commands [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") and [node-tee](bin/node-tee "node-tee") in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and exit codes. 30 tests were successfully carried on 'linux' and 'win32' platforms, to cover all possible combinations of inputs and command line arguments.
+[node-tee](bin/node-tee "node-tee") was tested to verify full emulation of the GNU [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") command version 8.32, by running each of the two commands [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html "tee") and [node-tee](bin/node-tee "node-tee") in a child process and asserting the strict equality of their respective outputs (stdout, stderr) and exit codes.
+
+
+Tests were successfully carried on 'linux' and 'win32' platforms, to cover all possible combinations of inputs and command line arguments.
+
+
+A command line utility [node-tee-test](bin/node-tee-test "node-tee-test") has been developed for the user to ensure the software is successfully tested on his own platform.
 ```
 Usage: node-tee-test [OPTIONS]...
 Test the developed 'node-tee'.
@@ -56,9 +62,9 @@ With no options, testing will be done using nodejs test runner API if supported.
 'node-tee' was tested againts the GNU 'tee' command version 8.32.
 ```
 
-## API Docs
+## Documentation
 
-To use this module as a library, see the [API Documentation](https://essamatefelsherif.github.io/node-tee/ "API Documentation").
+Source code documentation, along with a test coverage report and more relevant documents are all included under [Documentation](https://essamatefelsherif.github.io/node-tee/ "Documentation").
 
 ## Node version support
 
