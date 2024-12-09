@@ -41,8 +41,8 @@ const __dirname = dirname(__filename);
 const cmdNode = join(__dirname, '..', 'lib/node-tee.js');
 const cmdNodeTest = join(__dirname, '..', 'test/node-tee.test.js');
 
-let   cmdShell = CMD_SHELL;
-let   cmdShellVer = cmdShell;
+let cmdShell = CMD_SHELL;
+let cmdShellVer = cmdShell;
 
 const devNull = os.devNull;
 const tmpDir  = os.tmpdir();
@@ -472,8 +472,8 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
-cmdData.cmd_err = `tee: unrecognized option '--xxx'
-Try 'tee --help' for more information.\n`;
+cmdData.cmd_err = `${CMD_NODE}: unrecognized option '--xxx'
+Try '${CMD_NODE} --help' for more information.\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -491,13 +491,13 @@ Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `\
-tee: ambiguous argument ‘’ for ‘--output-error’
+${CMD_NODE}: ambiguous argument ‘’ for ‘--output-error’
 Valid arguments are:
   - ‘warn’
   - ‘warn-nopipe’
   - ‘exit’
   - ‘exit-nopipe’
-Try 'tee --help' for more information.\n`;
+Try '${CMD_NODE} --help' for more information.\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -515,13 +515,13 @@ Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `\
-tee: invalid argument ‘xxx’ for ‘--output-error’
+${CMD_NODE}: invalid argument ‘xxx’ for ‘--output-error’
 Valid arguments are:
   - ‘warn’
   - ‘warn-nopipe’
   - ‘exit’
   - ‘exit-nopipe’
-Try 'tee --help' for more information.\n`;
+Try '${CMD_NODE} --help' for more information.\n`;
 
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
@@ -539,8 +539,8 @@ Try 'tee --help' for more information.\n`;
 	cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
-cmdData.cmd_err = `tee: invalid option -- 'x'
-Try 'tee --help' for more information.\n`;
+cmdData.cmd_err = `${CMD_NODE}: invalid option -- 'x'
+Try '${CMD_NODE} --help' for more information.\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -771,7 +771,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -788,7 +788,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -805,7 +805,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -822,7 +822,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -839,7 +839,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -856,7 +856,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -873,7 +873,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -890,7 +890,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -907,7 +907,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -924,7 +924,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
@@ -962,7 +962,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = '';
-	cmdData.cmd_err = `tee: 'standard output': Broken pipe\n`;
+	cmdData.cmd_err = `${CMD_NODE}: 'standard output': Broken pipe\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -996,7 +996,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: 'standard output': Broken pipe\n`;
+	cmdData.cmd_err = `${CMD_NODE}: 'standard output': Broken pipe\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -1034,7 +1034,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -1052,8 +1052,8 @@ cmdData.cmd_err = '';
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `\
-tee: non-existent/file: No such file or directory
-tee: 'standard output': Broken pipe\n`;
+${CMD_NODE}: non-existent/file: No such file or directory
+${CMD_NODE}: 'standard output': Broken pipe\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -1070,7 +1070,7 @@ tee: 'standard output': Broken pipe\n`;
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -1087,7 +1087,7 @@ tee: 'standard output': Broken pipe\n`;
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -1104,7 +1104,7 @@ tee: 'standard output': Broken pipe\n`;
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
@@ -1213,10 +1213,11 @@ async function makeTest(obj){
 	let [out_act, out_exp, prc_act, prc_exp] = await getCmdOutput(obj);
 
 	if(out_exp !== null)
-		out_act.stderr = out_act.stderr.replace(new RegExp(CMD_NODE, 'g'), CMD_SHELL);
-
-	if(out_exp === null) out_exp = {stdout: obj.cmd_out, stderr: obj.cmd_err};
-	if(prc_exp === null) prc_exp = {exitCode: obj.cmd_ext};
+		out_exp.stderr = out_exp.stderr.replace(new RegExp(CMD_SHELL, 'g'), CMD_NODE);
+	else{
+		out_exp = {stdout: obj.cmd_out, stderr: obj.cmd_err};
+		prc_exp = {exitCode: obj.cmd_ext};
+	}
 
 	if(!cmdOptions.verbose){
 
