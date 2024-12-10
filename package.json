@@ -13,7 +13,7 @@
 		"testVerbose": "node test/node-tee.test.js -d -v",
 		"testSilent": "node test/node-tee.test.js -d",
 		"testHelp": "node test/node-tee.test.js -h",
-		"devGenhtml": "genhtml -o docs/coverage/node/genhtml --config-file .lcovrc docs/coverage/node/*.info",
+		"devGenhtml": "genhtml -o docs/coverage/node/html --config-file .lcovrc docs/coverage/node/lcov.info",
 		"devDoc": "rm -fr docs/jsdoc/* && jsdoc lib/*.js test/*.js -d docs/jsdoc",
 		"devUpdate": "npm run testReport && npm run devGenhtml && npm run devDoc",
 		"devCoveralls": "coveralls < docs/coverage/node/lcov.info"

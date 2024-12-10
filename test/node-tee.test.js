@@ -9,13 +9,13 @@
  *
  * Implemented in node.js by Essam A. El-Sherif.
  *
- * @module  node-tee.test
+ * @module  node-tee-test
  * @desc    Testing module for 'node-tee' core utility.
  * @version 1.0.1
  * @author  Essam A. El-Sherif
  */
 
-/** Import nodeJS core modules */
+/* Import nodeJS core modules */
 import os                 from 'node:os';
 import process            from 'node:process';
 import assert             from 'node:assert/strict';
@@ -24,20 +24,20 @@ import { exec, execSync } from 'node:child_process';
 import { fileURLToPath }  from 'node:url';
 import { dirname, join }  from 'node:path';
 
-/** @const {string} CMD_SHELL - The coreutils shell command */
+/** @const {string} CMD_SHELL - The coreutils shell command. */
 const CMD_SHELL = 'tee';
 
-/** @const {string} CMD_NODE - The coreutils node command */
+/** @const {string} CMD_NODE - The coreutils node command. */
 const CMD_NODE = 'node-tee';
 
-/** @const {string} CMD_NODE_TEST - The coreutils node testing command */
+/** @const {string} CMD_NODE_TEST - The coreutils node testing command. */
 const CMD_NODE_TEST = 'node-tee-test';
 
-/** Emulate commonJS __filename and __dirname constants */
+/* Emulate commonJS __filename and __dirname constants */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-/** Prepare test environment */
+/* Prepare test environment */
 const cmdNode = join(__dirname, '..', 'lib/node-tee.js');
 const cmdNodeTest = join(__dirname, '..', 'test/node-tee.test.js');
 
@@ -58,7 +58,7 @@ let startTime = Date.now();
 
 const suites = new Map();
 
-/** @const {object} cmdOptions - Command line arguments */
+/** @const {object} cmdOptions - Command line arguments. */
 const cmdOptions = {
 	node    : true,  // -n --node / - d --def
 	verbose : false, // -v --verbose
@@ -77,7 +77,7 @@ const cmdOptions = {
  * function getError()
  *
  * @func Main
- * @desc The application entry point function
+ * @desc The application entry point function.
  */
 (() => {
 	parseCmdLine();
@@ -121,7 +121,7 @@ const cmdOptions = {
  * function getError()
  *
  * @func verifyShellCmd
- * @desc Verify existance of the core utility command and test its version
+ * @desc Verify existance of the core utility command and test its version.
  */
 function verifyShellCmd(){
 
@@ -135,7 +135,8 @@ There is NO WARRANTY, to the extent permitted by law.
 Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
 `;
 	try{
-		const ver = execSync(`${cmdShell} --version`, {encoding: 'UTF-8'});
+		const ver = execSync(`${cmdShell} --version`, {encoding: 'UTF-8', stdio: ['pipe', 'pipe', 'ignore']});
+
 		if(ver !== cmdVer)
 			cmdShellVer = '';
 	}
@@ -160,7 +161,7 @@ Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
  * function getError()
  *
  * @func loadTestData
- * @desc Load test data
+ * @desc Load test data.
  */
 function loadTestData(){
 
@@ -697,7 +698,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_exp = cmdShell && `${cmdShell} ${cmdData.expFile}`;
 	cmdData.cmd_inp = 'test data';
 
-	cmdData.cmd_out = '';
+	cmdData.cmd_out = 'test data';
 	cmdData.cmd_err = '';
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
@@ -734,7 +735,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_exp = cmdShell && `${cmdShell} -a ${cmdData.expFile}`;
 	cmdData.cmd_inp = 'test data';
 
-	cmdData.cmd_out = '';
+	cmdData.cmd_out = 'test data';
 	cmdData.cmd_err = '';
 
 	cmdData.cmd_opt = {encoding: 'UTF-8'};
@@ -750,7 +751,8 @@ cmdData.cmd_err = '';
 		});
 		fs.open(cmdData.expFile, (err, fd) => {
 			fs.readFile(fd, 'utf8', (err, data) => {
-				assert.strictEqual(data, 'test datatest data');
+				if(cmdShell)
+					assert.strictEqual(data, 'test datatest data');
 				fs.unlink(cmdData.expFile, (err)=>{});
 			});
 		});
@@ -1127,8 +1129,8 @@ ${CMD_NODE}: 'standard output': Broken pipe\n`;
  * function getError()
  *
  * @func  nodeRunner
- * @param {object} runner - The node core module 'node:test' object
- * @desc  Carry out the loaded tests using node test runner
+ * @param {object} runner - The node core module 'node:test' object.
+ * @desc  Carry out the loaded tests using node test runner.
  */
 function nodeRunner(runner){
 
@@ -1157,7 +1159,7 @@ function nodeRunner(runner){
  * function getError()
  *
  * @func  defRunner
- * @desc  Carry out the loaded tests using this developed test runner
+ * @desc  Carry out the loaded tests using this developed test runner.
  */
 function defRunner(){
 
@@ -1197,8 +1199,8 @@ function defRunner(){
  *
  * @func  makeTest
  * @async
- * @param {object} obj - The test data object
- * @desc  Carry out a single test
+ * @param {object} obj - The test data object.
+ * @desc  Carry out a single test.
  */
 async function makeTest(obj){
 
@@ -1228,7 +1230,7 @@ async function makeTest(obj){
 	}
 	/* node:coverage disable */
 	else{
-	try{
+		try{
 			assert.strictEqual(out_act.stdout, out_exp.stdout);
 			assert.strictEqual(out_act.stderr, out_exp.stderr);
 			assert.strictEqual(prc_act.exitCode, prc_exp.exitCode);
@@ -1262,8 +1264,8 @@ async function makeTest(obj){
  * function getError()
  *
  * @func  getCmdOutput
- * @param {object} cmdObj - The test data object
- * @desc  Carry out a single test
+ * @param {object} cmdObj - The test data object.
+ * @desc  Carry out a single test.
  */
 function getCmdOutput(cmdObj){
 
@@ -1307,7 +1309,7 @@ function getCmdOutput(cmdObj){
  * function getError()
  *
  * @func parseCmdLine
- * @desc Command line parser function
+ * @desc Command line parser function.
  */
 function parseCmdLine(){
 	for(let i = 2; i < process.argv.length; i++){
@@ -1378,8 +1380,8 @@ function parseCmdLine(){
  * function getError()
  *
  * @func   getHelp
- * @return {string}
- * @desc   Function to return help info
+ * @return {string} The help string.
+ * @desc   Function to return help info.
  */
 function getHelp(){
 	return `\
@@ -1409,9 +1411,9 @@ With no options, testing will be done using nodejs test runner API if supported.
  *     function getError()
  *
  * @func   getError
- * @param  {number} Error number
- * @return {string} Error message
- * @desc   Function to return error message
+ * @param  {number} Error number.
+ * @return {string} Error message.
+ * @desc   Function to return error message.
  */
 function getError(n){
 

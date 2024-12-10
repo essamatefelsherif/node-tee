@@ -37,13 +37,13 @@
  *
  * Implemented in node.js by Essam A. El-Sherif.
  *
- * @module  node-tee.test
+ * @module  node-tee-test
  * @desc    Testing module for 'node-tee' core utility.
  * @version 1.0.1
  * @author  Essam A. El-Sherif
  */
 
-/** Import nodeJS core modules */
+/* Import nodeJS core modules */
 import os                 from 'node:os';
 import process            from 'node:process';
 import assert             from 'node:assert/strict';
@@ -52,25 +52,25 @@ import { exec, execSync } from 'node:child_process';
 import { fileURLToPath }  from 'node:url';
 import { dirname, join }  from 'node:path';
 
-/** @const {string} CMD_SHELL - The coreutils shell command */
+/** @const {string} CMD_SHELL - The coreutils shell command. */
 const CMD_SHELL = 'tee';
 
-/** @const {string} CMD_NODE - The coreutils node command */
+/** @const {string} CMD_NODE - The coreutils node command. */
 const CMD_NODE = 'node-tee';
 
-/** @const {string} CMD_NODE_TEST - The coreutils node testing command */
+/** @const {string} CMD_NODE_TEST - The coreutils node testing command. */
 const CMD_NODE_TEST = 'node-tee-test';
 
-/** Emulate commonJS __filename and __dirname constants */
+/* Emulate commonJS __filename and __dirname constants */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-/** Prepare test environment */
+/* Prepare test environment */
 const cmdNode = join(__dirname, '..', 'lib/node-tee.js');
 const cmdNodeTest = join(__dirname, '..', 'test/node-tee.test.js');
 
-let   cmdShell = CMD_SHELL;
-let   cmdShellVer = cmdShell;
+let cmdShell = CMD_SHELL;
+let cmdShellVer = cmdShell;
 
 const devNull = os.devNull;
 const tmpDir  = os.tmpdir();
@@ -86,7 +86,7 @@ let startTime = Date.now();
 
 const suites = new Map();
 
-/** @const {object} cmdOptions - Command line arguments */
+/** @const {object} cmdOptions - Command line arguments. */
 const cmdOptions = {
 	node    : true,  // -n --node / - d --def
 	verbose : false, // -v --verbose
@@ -105,7 +105,7 @@ const cmdOptions = {
  * function getError()
  *
  * @func Main
- * @desc The application entry point function
+ * @desc The application entry point function.
  */
 (() => {
 	parseCmdLine();
@@ -149,7 +149,7 @@ const cmdOptions = {
  * function getError()
  *
  * @func verifyShellCmd
- * @desc Verify existance of the core utility command and test its version
+ * @desc Verify existance of the core utility command and test its version.
  */
 function verifyShellCmd(){
 
@@ -163,7 +163,8 @@ There is NO WARRANTY, to the extent permitted by law.
 Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
 `;
 	try{
-		const ver = execSync(`${cmdShell} --version`, {encoding: 'UTF-8'});
+		const ver = execSync(`${cmdShell} --version`, {encoding: 'UTF-8', stdio: ['pipe', 'pipe', 'ignore']});
+
 		if(ver !== cmdVer)
 			cmdShellVer = '';
 	}
@@ -188,7 +189,7 @@ Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
  * function getError()
  *
  * @func loadTestData
- * @desc Load test data
+ * @desc Load test data.
  */
 function loadTestData(){
 
@@ -210,6 +211,7 @@ function loadTestData(){
 	cmdData.cmd_out = getHelp();
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE_TEST} --help`;
 
@@ -226,6 +228,7 @@ function loadTestData(){
 	cmdData.cmd_out = getHelp();
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE_TEST} -h`;
 
@@ -235,13 +238,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest}`;
+	cmdData.cmd_act = `node ${cmdNodeTest}`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":true,"verbose":false}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST}`;
 
@@ -251,13 +255,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test --node
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} --node`;
+	cmdData.cmd_act = `node ${cmdNodeTest} --node`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":true,"verbose":false}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} --node`;
 
@@ -267,13 +272,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test -n
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} -n`;
+	cmdData.cmd_act = `node ${cmdNodeTest} -n`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":true,"verbose":false}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} -n`;
 
@@ -283,13 +289,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test --def
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} --def`;
+	cmdData.cmd_act = `node ${cmdNodeTest} --def`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":false,"verbose":false}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} --def`;
 
@@ -299,13 +306,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test -d
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} -d`;
+	cmdData.cmd_act = `node ${cmdNodeTest} -d`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":false,"verbose":false}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} -d`;
 
@@ -315,13 +323,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test --verbose
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} --verbose`;
+	cmdData.cmd_act = `node ${cmdNodeTest} --verbose`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":true,"verbose":true}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} --verbose`;
 
@@ -331,13 +340,14 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test -v
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} -v`;
+	cmdData.cmd_act = `node ${cmdNodeTest} -v`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
 	cmdData.cmd_out = `{"node":true,"verbose":true}`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} -v`;
 
@@ -347,7 +357,7 @@ function loadTestData(){
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test --xxx
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} --xxx`;
+	cmdData.cmd_act = `node ${cmdNodeTest} --xxx`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
@@ -357,6 +367,7 @@ ${CMD_NODE_TEST}: invalid option -- 'xxx'
 Try '${CMD_NODE_TEST} --help' for more information.
 `;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} --xxx`;
 
@@ -366,7 +377,7 @@ Try '${CMD_NODE_TEST} --help' for more information.
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test -x
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} -x`;
+	cmdData.cmd_act = `node ${cmdNodeTest} -x`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
@@ -376,6 +387,7 @@ ${CMD_NODE_TEST}: unrecognized option '-x'
 Try '${CMD_NODE_TEST} --help' for more information.
 `,
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} -x`;
 
@@ -385,7 +397,7 @@ Try '${CMD_NODE_TEST} --help' for more information.
 	// TEST ### - NODE_TEE_TEST=1 node-tee-test xxx
 	cmdData = {cmd_aux: null};
 
-	cmdData.cmd_act = `NODE_TEE_TEST=1 node ${cmdNodeTest} xxx`;
+	cmdData.cmd_act = `node ${cmdNodeTest} xxx`;
 	cmdData.cmd_exp = '';
 	cmdData.cmd_inp = '';
 
@@ -395,6 +407,7 @@ ${CMD_NODE_TEST}: unrecognized option 'xxx'
 Try '${CMD_NODE_TEST} --help' for more information.
 `,
 
+	cmdData.cmd_opt = {encoding: 'UTF-8', env:{NODE_TEE_TEST:1}};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `NODE_TEE_TEST=1 ${CMD_NODE_TEST} xxx`;
 
@@ -435,6 +448,7 @@ writing to non pipe outputs.
 `;
 cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --help`;
 
@@ -451,6 +465,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = `v1.0.1\n`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --version`;
 
@@ -467,6 +482,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = '';
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --`;
 
@@ -485,9 +501,10 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
-cmdData.cmd_err = `tee: unrecognized option '--xxx'
-Try 'tee --help' for more information.\n`;
+cmdData.cmd_err = `${CMD_NODE}: unrecognized option '--xxx'
+Try '${CMD_NODE} --help' for more information.\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --xxx`;
 
@@ -503,14 +520,15 @@ Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `\
-tee: ambiguous argument ‘’ for ‘--output-error’
+${CMD_NODE}: ambiguous argument ‘’ for ‘--output-error’
 Valid arguments are:
   - ‘warn’
   - ‘warn-nopipe’
   - ‘exit’
   - ‘exit-nopipe’
-Try 'tee --help' for more information.\n`;
+Try '${CMD_NODE} --help' for more information.\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=`;
 
@@ -526,14 +544,16 @@ Try 'tee --help' for more information.\n`;
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `\
-tee: invalid argument ‘xxx’ for ‘--output-error’
+${CMD_NODE}: invalid argument ‘xxx’ for ‘--output-error’
 Valid arguments are:
   - ‘warn’
   - ‘warn-nopipe’
   - ‘exit’
   - ‘exit-nopipe’
-Try 'tee --help' for more information.\n`;
+Try '${CMD_NODE} --help' for more information.\n`;
 
+
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=xxx`;
 
@@ -548,9 +568,10 @@ Try 'tee --help' for more information.\n`;
 	cmdData.cmd_inp = '';
 
 cmdData.cmd_out = '';
-cmdData.cmd_err = `tee: invalid option -- 'x'
-Try 'tee --help' for more information.\n`;
+cmdData.cmd_err = `${CMD_NODE}: invalid option -- 'x'
+Try '${CMD_NODE} --help' for more information.\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} -x`;
 
@@ -571,6 +592,7 @@ Try 'tee --help' for more information.\n`;
 	cmdData.cmd_out = '';
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE}`;
 
@@ -587,6 +609,7 @@ Try 'tee --help' for more information.\n`;
 	cmdData.cmd_out = `\x00\x01\x02\x03\x04`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE}` + ` &lt;&lt; \\x00\\x01\\x02\\x03\\x04`;
 
@@ -606,6 +629,7 @@ line 2\x04
 line 3`;
 cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE}` + ` &lt;&lt; test data\\nline 1\\nline 2\\x04\\nline 3`;
 
@@ -625,6 +649,7 @@ line 2\x04
 line 3`;
 cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} -i` + ` &lt;&lt; test data\\nline 1\\nline 2\\x04\\nline 3`;
 
@@ -644,6 +669,7 @@ line 2\x04
 line 3`;
 cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --ignore-interrupts` + ` &lt;&lt; test data\\nline 1\\nline 2\\x04\\nline 3`;
 
@@ -660,6 +686,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = `test data`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE}` + ` &lt;&lt; test data &lt;&lt; CTRL-C signal`;
 
@@ -678,6 +705,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = `test data`;
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} -i` + ` &lt;&lt; test data &lt;&lt; CTRL-C signal`;
 
@@ -698,9 +726,10 @@ cmdData.cmd_err = '';
 	cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} ${cmdData.expFile}`;
 	cmdData.cmd_inp = 'test data';
 
-	cmdData.cmd_out = '';
+	cmdData.cmd_out = 'test data';
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} ${cmdData.actFile}` + ` &lt;&lt; test data`;
 
@@ -734,9 +763,10 @@ cmdData.cmd_err = '';
 	cmdData.cmd_exp = cmdShell &amp;&amp; `${cmdShell} -a ${cmdData.expFile}`;
 	cmdData.cmd_inp = 'test data';
 
-	cmdData.cmd_out = '';
+	cmdData.cmd_out = 'test data';
 	cmdData.cmd_err = '';
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} -a ${cmdData.actFile}` + ` &lt;&lt; test data`;
 
@@ -749,7 +779,8 @@ cmdData.cmd_err = '';
 		});
 		fs.open(cmdData.expFile, (err, fd) => {
 			fs.readFile(fd, 'utf8', (err, data) => {
-				assert.strictEqual(data, 'test datatest data');
+				if(cmdShell)
+					assert.strictEqual(data, 'test datatest data');
 				fs.unlink(cmdData.expFile, (err)=>{});
 			});
 		});
@@ -770,8 +801,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -786,8 +818,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -802,8 +835,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -818,8 +852,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -834,8 +869,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe non-existent/file` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -850,8 +886,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -866,8 +903,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -882,8 +920,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = `test data`;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -898,8 +937,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -914,8 +954,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 1;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -936,6 +977,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = ``;
 	cmdData.cmd_err = ``;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -950,8 +992,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = '';
-	cmdData.cmd_err = `tee: 'standard output': Broken pipe\n`;
+	cmdData.cmd_err = `${CMD_NODE}: 'standard output': Broken pipe\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -968,6 +1011,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = ``;
 	cmdData.cmd_err = ``;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -982,8 +1026,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: 'standard output': Broken pipe\n`;
+	cmdData.cmd_err = `${CMD_NODE}: 'standard output': Broken pipe\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1000,6 +1045,7 @@ cmdData.cmd_err = '';
 	cmdData.cmd_out = ``;
 	cmdData.cmd_err = ``;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1018,8 +1064,9 @@ cmdData.cmd_err = '';
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1035,9 +1082,10 @@ cmdData.cmd_err = '';
 
 cmdData.cmd_out = '';
 cmdData.cmd_err = `\
-tee: non-existent/file: No such file or directory
-tee: 'standard output': Broken pipe\n`;
+${CMD_NODE}: non-existent/file: No such file or directory
+${CMD_NODE}: 'standard output': Broken pipe\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1052,8 +1100,9 @@ tee: 'standard output': Broken pipe\n`;
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=warn-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1068,8 +1117,9 @@ tee: 'standard output': Broken pipe\n`;
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1084,8 +1134,9 @@ tee: 'standard output': Broken pipe\n`;
 	cmdData.cmd_inp = 'test data';
 
 	cmdData.cmd_out = ``;
-	cmdData.cmd_err = `tee: non-existent/file: No such file or directory\n`;
+	cmdData.cmd_err = `${CMD_NODE}: non-existent/file: No such file or directory\n`;
 
+	cmdData.cmd_opt = {encoding: 'UTF-8'};
 	cmdData.cmd_ext = 0;
 	cmdData.cmd_desc = `${CMD_NODE} --output-error=exit-nopipe ${devNull} non-existent/file ${devNull} | ${noOpCmd}` + (cmdData.cmd_inp &amp;&amp; ` &lt;&lt; ${cmdData.cmd_inp}`);
 
@@ -1106,8 +1157,8 @@ tee: 'standard output': Broken pipe\n`;
  * function getError()
  *
  * @func  nodeRunner
- * @param {object} runner - The node core module 'node:test' object
- * @desc  Carry out the loaded tests using node test runner
+ * @param {object} runner - The node core module 'node:test' object.
+ * @desc  Carry out the loaded tests using node test runner.
  */
 function nodeRunner(runner){
 
@@ -1136,7 +1187,7 @@ function nodeRunner(runner){
  * function getError()
  *
  * @func  defRunner
- * @desc  Carry out the loaded tests using this developed test runner
+ * @desc  Carry out the loaded tests using this developed test runner.
  */
 function defRunner(){
 
@@ -1176,8 +1227,8 @@ function defRunner(){
  *
  * @func  makeTest
  * @async
- * @param {object} obj - The test data object
- * @desc  Carry out a single test
+ * @param {object} obj - The test data object.
+ * @desc  Carry out a single test.
  */
 async function makeTest(obj){
 
@@ -1192,10 +1243,11 @@ async function makeTest(obj){
 	let [out_act, out_exp, prc_act, prc_exp] = await getCmdOutput(obj);
 
 	if(out_exp !== null)
-		out_act.stderr = out_act.stderr.replace(new RegExp(CMD_NODE, 'g'), CMD_SHELL);
-
-	if(out_exp === null) out_exp = {stdout: obj.cmd_out, stderr: obj.cmd_err};
-	if(prc_exp === null) prc_exp = {exitCode: obj.cmd_ext};
+		out_exp.stderr = out_exp.stderr.replace(new RegExp(CMD_SHELL, 'g'), CMD_NODE);
+	else{
+		out_exp = {stdout: obj.cmd_out, stderr: obj.cmd_err};
+		prc_exp = {exitCode: obj.cmd_ext};
+	}
 
 	if(!cmdOptions.verbose){
 
@@ -1206,7 +1258,7 @@ async function makeTest(obj){
 	}
 	/* node:coverage disable */
 	else{
-	try{
+		try{
 			assert.strictEqual(out_act.stdout, out_exp.stdout);
 			assert.strictEqual(out_act.stderr, out_exp.stderr);
 			assert.strictEqual(prc_act.exitCode, prc_exp.exitCode);
@@ -1240,15 +1292,15 @@ async function makeTest(obj){
  * function getError()
  *
  * @func  getCmdOutput
- * @param {object} cmdObj - The test data object
- * @desc  Carry out a single test
+ * @param {object} cmdObj - The test data object.
+ * @desc  Carry out a single test.
  */
 function getCmdOutput(cmdObj){
 
 	let proc_act, proc_exp;
 
 	let prom_act = new Promise((resolve, reject) => {
-		proc_act = exec(cmdObj.cmd_act, {encoding: 'UTF-8'}, (err, stdout, stderr) => {
+		proc_act = exec(cmdObj.cmd_act, cmdObj.cmd_opt, (err, stdout, stderr) => {
 			resolve({stdout, stderr});
 		});
 		proc_act.stdin.write(cmdObj.cmd_inp);
@@ -1258,7 +1310,7 @@ function getCmdOutput(cmdObj){
 
 	if(cmdObj.cmd_exp){
 		let prom_exp = new Promise((resolve, reject) => {
-			proc_exp = exec(cmdObj.cmd_exp, {encoding: 'UTF-8'}, (err, stdout, stderr) => {
+			proc_exp = exec(cmdObj.cmd_exp, cmdObj.cmd_opt, (err, stdout, stderr) => {
 				resolve({stdout, stderr});
 			});
 			proc_exp.stdin.write(cmdObj.cmd_inp);
@@ -1285,7 +1337,7 @@ function getCmdOutput(cmdObj){
  * function getError()
  *
  * @func parseCmdLine
- * @desc Command line parser function
+ * @desc Command line parser function.
  */
 function parseCmdLine(){
 	for(let i = 2; i &lt; process.argv.length; i++){
@@ -1356,8 +1408,8 @@ function parseCmdLine(){
  * function getError()
  *
  * @func   getHelp
- * @return {string}
- * @desc   Function to return help info
+ * @return {string} The help string.
+ * @desc   Function to return help info.
  */
 function getHelp(){
 	return `\
@@ -1387,9 +1439,9 @@ With no options, testing will be done using nodejs test runner API if supported.
  *     function getError()
  *
  * @func   getError
- * @param  {number} Error number
- * @return {string} Error message
- * @desc   Function to return error message
+ * @param  {number} Error number.
+ * @return {string} Error message.
+ * @desc   Function to return error message.
  */
 function getError(n){
 
@@ -1425,13 +1477,13 @@ Try '${CMD_NODE_TEST} --help' for more information.`,
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-node-tee.html">node-tee</a></li><li><a href="module-node-tee-errno.html">node-tee-errno</a></li><li><a href="node-tee.module_test.html">test</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-node-tee.html">node-tee</a></li><li><a href="module-node-tee-errno.html">node-tee-errno</a></li><li><a href="module-node-tee-test.html">node-tee-test</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Nov 27 2024 11:30:34 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Dec 10 2024 04:51:26 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
