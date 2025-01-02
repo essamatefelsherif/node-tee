@@ -1,25 +1,25 @@
 {
-	"name": "@essamonline/node-tee",
-	"version": "1.0.0",
+	"name"   : "@essamonline/node-tee",
+	"version": "1.0.1",
 	"description": "A Node.js implementation of the (GNU coreutils) 'tee' redirection command version 8.32.",
-	"main": "lib/node-tee.js",
-	"type": "module",
+	"main"   : "lib/node-tee.js",
+	"type"   : "module",
 	"scripts": {
 		"start": "node lib/node-tee.js",
-		"help": "node lib/node-tee.js --help",
-		"test": "node --test",
-		"testCover": "node --test --experimental-test-coverage",
-		"testReport": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=docs/coverage/node/lcov.info",
-		"testVerbose": "node test/node-tee.test.js -d -v",
-		"testSilent": "node test/node-tee.test.js -d",
-		"testHelp": "node test/node-tee.test.js -h",
-		"devGenhtml": "genhtml -o docs/coverage/node/html --config-file .lcovrc docs/coverage/node/lcov.info",
-		"devDoc": "rm -fr docs/jsdoc/* && jsdoc lib/*.js test/*.js -d docs/jsdoc",
-		"devUpdate": "npm run testReport && npm run devGenhtml && npm run devDoc",
+		"help" : "node lib/node-tee.js --help",
+		"test" : "node --test",
+		"testCover"   : "node --test --experimental-test-coverage",
+		"testReport"  : "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=docs/coverage/node/lcov.info",
+		"testVerbose" : "node test/node-tee.test.js -d -v",
+		"testSilent"  : "node test/node-tee.test.js -d",
+		"testHelp"    : "node test/node-tee.test.js -h",
+		"devGenhtml"  : "genhtml -o docs/coverage/node/html --config-file .lcovrc docs/coverage/node/lcov.info",
+		"devDoc"      : "rm -fr docs/jsdoc/* && jsdoc lib/*.js test/*.js -d docs/jsdoc",
+		"devUpdate"   : "npm run testReport && npm run devGenhtml && npm run devDoc",
 		"devCoveralls": "coveralls < docs/coverage/node/lcov.info"
 	},
 	"bin": {
-		"node-tee": "bin/node-tee",
+		"node-tee"     : "bin/node-tee",
 		"node-tee-test": "bin/node-tee-test"
 	},
 	"keywords": [
@@ -29,14 +29,14 @@
 		"posix"
 	],
 	"author": {
-		"name": "Essam A. El-Sherif",
+		"name" : "Essam A. El-Sherif",
 		"email": "esm.elsh@gmail.com",
-		"url": "https://essamonline.net/resume-it.html"
+		"url"  : "https://essamatefelsherif.github.io/whoami"
 	},
 	"homepage": "https://github.com/essamatefelsherif/node-tee#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/essamatefelsherif/node-tee.git"
+		"url" : "git+https://github.com/essamatefelsherif/node-tee.git"
 	},
 	"license": "MIT",
 	"devDependencies": {
