@@ -20,7 +20,9 @@
 	},
 	"bin": {
 		"node-tee"     : "bin/node-tee",
-		"node-tee-test": "bin/node-tee-test"
+		"node-tee-test": "bin/node-tee-test",
+		"node-tee.bat"     : "bin/node-tee.bat",
+		"node-tee-test.bat": "bin/node-tee-test"
 	},
 	"keywords": [
 		"coreutils",

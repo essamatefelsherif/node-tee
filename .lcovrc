@@ -3,7 +3,6 @@
 #
 # To change settings for a single user, place a customized copy of this file
 # at location ~/.lcovrc
-#
 
 # Specify an external style sheet file (same as --css-file option of genhtml)
 #genhtml_css_file = gcov.css

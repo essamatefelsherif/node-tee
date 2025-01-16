@@ -4,8 +4,9 @@ A Node.js implementation of the ([GNU coreutils](https://www.gnu.org/software/co
 
 ### v1.0.1
 
-* Fix a bug.
+* Fix a bug (the default behaviour is to overwrite a given file not appending to).
 * Additional unit tests.
+* Adding win32 .bat executables.
 * Improved documentation.
 
 ### v1.0.0

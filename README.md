@@ -68,9 +68,7 @@ Source code documentation, along with a test coverage report and more relevant d
 
 ## Node version support
 
-**node-tee** supports all currently maintained Node versions. See the [Node Release Schedule][].
-
-[node release schedule]: https://github.com/nodejs/Release#release-schedule
+**node-tee** supports all currently maintained Node versions. See the [Node Release Schedule](https://github.com/nodejs/Release#release-schedule).
 
 ## License
 

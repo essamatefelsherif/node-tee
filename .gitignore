@@ -23,4 +23,5 @@ package-lock.json
 # other folders
 tmp/
 
+# coveralls config
 .coveralls.yml
